@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# Dwarf Backend Setup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Requirements
 
-Currently, two official plugins are available:
+* PHP ≥ 8.2
+* Composer ≥ 2.x
+* Laravel framework (installed via Composer)
+* Xdebug (enable for test coverage)
+* Node.js with npm
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Install
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+cp .env.example .env
+composer install
+npm install
+php artisan key:generate
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Set database vars in `.env` (defaults to sqlite).
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+## Commands
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+php artisan migrate
+npm install && npm run build
+php artisan l5-swagger:generate # http://localhost:8000/api/documentation
+php artisan serve               # http://localhost:8000
 ```
+
+## Tests and Coverage
+
+```bash
+php artisan test            # to run tests
+php artisan test --coverage # for html report in ./coverage
+```
+
+## Production (Docker)
+
+Requirements:
+
+* Docker
+* Docker Compose v2
+* Production `.env` file with correct settings (e.g., `APP_ENV=production`, `APP_DEBUG=false`)
+
+Example flow:
+
+```bash
+# build and start
+docker compose up -d --build
+
+# first‑time bootstrap
+docker compose exec app php artisan migrate --force
+```
+
+Notes:
+
+* Application server is Frankenphp, so in production it is recommended to setup a load balancer.
+* API documentation available after running `php artisan l5-swagger:generate` in `/api/documentation`.
