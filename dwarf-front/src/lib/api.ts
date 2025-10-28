@@ -1,9 +1,9 @@
 export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 const BASE_API_URL =
-  import.meta.env.DWARF_API_BASE_URL ?? "http://localhost:8000/api";
+  import.meta.env.VITE_DWARF_API_BASE_URL ?? "http://localhost:8000/api";
 export const BASE_WEB_URL =
-  import.meta.env.DWARF_WEB_BASE_URL ?? "http://localhost:8000";
+  import.meta.env.VITE_DWARF_WEB_BASE_URL ?? "http://localhost:8000";
 
 export class ApiError extends Error {
   status: number;

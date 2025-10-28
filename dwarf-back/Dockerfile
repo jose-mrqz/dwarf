@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
 WORKDIR /app
 
@@ -22,6 +22,8 @@ COPY . .
 
 # Install PHP deps
 RUN composer install --optimize-autoloader --no-dev
+RUN php artisan migrate
+RUN php artisan storage:link
 
 # Permissions
 RUN chown -R www-data:www-data storage bootstrap/cache \
