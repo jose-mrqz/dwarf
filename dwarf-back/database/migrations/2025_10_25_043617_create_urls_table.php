@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
             $table->string('url')->unique();
-            $table->string('code')->unique();
+            $table->string('code')->unique()->index();
             $table->timestamps();
         });
     }

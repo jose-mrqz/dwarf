@@ -33,7 +33,7 @@ class UrlController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/urls",
+     *     path="/api/v1/urls",
      *     summary="List all URLs",
      *     tags={"URLs"},
      *     @OA\Response(
@@ -54,7 +54,7 @@ class UrlController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/urls",
+     *     path="/api/v1/urls",
      *     summary="Create a shortened URL",
      *     tags={"URLs"},
      *     @OA\RequestBody(
@@ -84,7 +84,7 @@ class UrlController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/urls/{id}",
+     *     path="/api/v1/urls/{id}",
      *     summary="Get a URL by ID",
      *     tags={"URLs"},
      *     @OA\Parameter(
@@ -118,7 +118,7 @@ class UrlController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/urls/code/{code}",
+     *     path="/api/v1/urls/code/{code}",
      *     summary="Get a URL by code",
      *     tags={"URLs"},
      *     @OA\Parameter(
@@ -181,7 +181,7 @@ class UrlController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/urls/{id}",
+     *     path="/api/v1/urls/{id}",
      *     summary="Delete a URL",
      *     tags={"URLs"},
      *     @OA\Parameter(
