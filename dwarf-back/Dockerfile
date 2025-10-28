@@ -22,7 +22,6 @@ COPY . .
 
 # Install PHP deps
 RUN composer install --optimize-autoloader --no-dev
-RUN php artisan migrate
 RUN php artisan storage:link
 
 # Permissions
