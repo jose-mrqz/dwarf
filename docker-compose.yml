@@ -1,0 +1,18 @@
+services:
+  dwarf-back:
+    build:
+      context: ./dwarf-back
+      dockerfile: Dockerfile
+    env_file:
+      - ./dwarf-back/.env
+    ports:
+      - "8000:8000"
+
+  dwarf-front:
+    build:
+      context: ./dwarf-front
+      dockerfile: Dockerfile
+    env_file:
+      - ./dwarf-front/.env
+    ports:
+      - "3000:3000"

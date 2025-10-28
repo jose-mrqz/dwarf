@@ -1,0 +1,16 @@
+{
+  # Optional: tune workers, etc.
+  # frankenphp — global options can go here
+}
+
+:8000 {
+  root * /app/public
+  encode zstd gzip
+
+  # Serve Laravel via FrankenPHP
+  php_server
+
+  # Static files
+  file_server
+}
+
