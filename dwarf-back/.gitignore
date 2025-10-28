@@ -1,9 +1,18 @@
-# Laravel Framework
+# Laravel
 /vendor/
 /node_modules/
-/public/build/
-/public/hot
-/public/storage
+bootstrap/cache/*
+!bootstrap/cache/.gitkeep
+
+# Public assets to ignore
+public/build/
+public/hot
+public/storage
+public/css/
+public/js/
+public/mix-manifest.json
+
+# Storage
 /storage/*.key
 /storage/pail
 /storage/logs/*.log
@@ -18,46 +27,24 @@
 !/storage/framework/views/.gitkeep
 !/storage/logs/.gitkeep
 
-# Environment files
+# Env files
 .env
 .env.backup
 .env.production
 .env.local
 .env.testing
 .env.staging
+/.env.local
+/.env.development.local
+/.env.test.local
+/.env.production.local
 
-# IDE and Editor files
-/.vscode/
-/.idea/
-/.fleet/
-/.nova/
-/.zed/
-*.swp
-*.swo
-*~
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
-
-# PHP
+# PHP / PHPUnit / Pest
 .phpunit.result.cache
+/.phpunit.cache/
 /.phpunit.cache
-/.phpunit.cache/
-composer.phar
-composer.lock
-
-# Testing
-/coverage/
-/.phpunit.cache/
 /phpunit.xml
-/.phpunit.result.cache
+/.pest/
 
 # Logs
 *.log
@@ -66,86 +53,93 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# Runtime data
+# Runtime
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
+# Coverage
 coverage/
 *.lcov
-
-# nyc test coverage
 .nyc_output
+/.coverage/
+coverage/
+
+# Node tooling caches
+.npm
+.eslintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.node_repl_history
+*.tgz
+.yarn-integrity
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variables file
-.env
-.env.test
-
-# parcel-bundler cache (https://parceljs.org/)
+# Parcel / Next / Nuxt / Gatsby caches and builds
 .cache
 .parcel-cache
-
-# Next.js build output
 .next
-
-# Nuxt.js build / generate output
 .nuxt
 dist
+# IMPORTANT: Do NOT ignore Laravel public/; remove the line "public" from Gatsby defaults.
 
-# Gatsby files
-.cache/
-public
-
-# Storybook build outputs
-.out
-.storybook-out
-
-# Temporary folders
-tmp/
-temp/
-
-# Editor directories and files
-.vscode/*
+# Editors / IDEs
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
 !.vscode/extensions.json
-.idea
+/.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+.fleet/
+.nova/
+.zed/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
 
-# Laravel specific
-Homestead.json
-Homestead.yaml
-auth.json
-.phpactor.json
+# Sublime / Vim / Emacs
+*.sublime-project
+*.sublime-workspace
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
 
 # Docker
 .dockerignore
@@ -156,163 +150,45 @@ docker-compose.override.yml
 *.sqlite3
 *.db
 
-# Backup files
+# Backups / Archives
 *.bak
 *.backup
 *.old
-
-# Archive files
 *.zip
 *.tar.gz
 *.rar
 
-# Security
-*.pem
-*.key
-*.crt
-*.csr
-
-# Documentation build
-/docs/build/
-
-# API documentation
-/storage/api-docs/
-
-# Laravel Telescope
-/storage/telescope/
-
-# Laravel Horizon
-/storage/horizon/
-
-# Laravel Sanctum
-/storage/sanctum/
-
-# Laravel Passport
-/storage/oauth-*
-
-# Laravel Cashier
-/storage/cashier/
-
-# Laravel Socialite
-/storage/socialite/
-
-# Laravel Scout
-/storage/scout/
-
-# Laravel Dusk
-/tests/Browser/screenshots/
-/tests/Browser/console/
-
-# Laravel Mix
-/public/css/
-/public/js/
-/public/mix-manifest.json
-
-# Vite
-/public/build/
-/public/hot
-
-# NPM
-package-lock.json
-yarn.lock
-
-# Composer
-composer.phar
-/vendor/
-
-# PHPUnit
-/.phpunit.cache/
-/.phpunit.result.cache
-/phpunit.xml
-
-# Pest
-/.pest/
-
-# Coverage
-/coverage/
-/.coverage/
-
-# Local development
-/.env.local
-/.env.development.local
-/.env.test.local
-/.env.production.local
-
-# IDE specific
-*.sublime-project
-*.sublime-workspace
-.vscode/settings.json
-.vscode/launch.json
-.vscode/extensions.json
-
-# MacOS
-.AppleDouble
-.LSOverride
-Icon
-._*
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Linux
-*~
-.fuse_hidden*
-.directory
-.Trash-*
-.nfs*
-
-# JetBrains IDEs
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# Visual Studio Code
-.vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Vim
-*.swp
-*.swo
-*~
-
-# Emacs
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-*.elc
-auto-save-list
-tramp
-.\#*
-
-# Local configuration
+# Local config
 config/local.php
 config/database.local.php
 config/mail.local.php
 
-# Cache
-bootstrap/cache/*
-!bootstrap/cache/.gitkeep
+# Laravel ecosystem
+Homestead.json
+Homestead.yaml
+auth.json
+.phpactor.json
 
-# Compiled assets
-public/css/
-public/js/
-public/mix-manifest.json
+# Documentation build
+/docs/build/
 
-# Hot reload
-public/hot
+# API docs
+/storage/api-docs/
+# Telescope / Horizon / Sanctum / Passport / Cashier / Socialite / Scout
+/storage/telescope/
+/storage/horizon/
+/storage/sanctum/
+/storage/oauth-*
+/storage/cashier/
+/storage/socialite/
+/storage/scout/
+# Dusk
+/tests/Browser/screenshots/
+/tests/Browser/console/
 
-# Build artifacts
-/public/build/
-/public/hot
+# NPM/Yarn lockfiles (keep if you prefer, default: commit them)
+# package-lock.json
+# yarn.lock
+
+# Composer (keep lockfile committed)
+composer.phar
