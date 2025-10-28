@@ -99,10 +99,10 @@ export default function Index() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {urls.map((url) => (
+            {urls.map((url, index) => (
               <TableRow key={url.id}>
                 <TableCell className="text-left font-medium">
-                  {url.id}
+                  {index + 1}
                 </TableCell>
                 <TableCell className="text-left">
                   <a
