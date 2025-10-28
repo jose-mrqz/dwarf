@@ -1,59 +1,64 @@
-# Dwarf Backend Setup
+# Dwarf Frontend README.md
 
-## Requirements
+## 1) Requirements
 
-* PHP ≥ 8.2
-* Composer ≥ 2.x
-* Laravel framework (installed via Composer)
-* Xdebug (enable for test coverage)
-* Node.js with npm
+* Node.js ≥ 18
+* npm
+* **pnpm** ≥ 8 (`npm i -g pnpm`)
+* (For containers) Docker + Docker Compose v2
 
-## Install
+## 2) Install & Run (local)
 
 ```bash
 cp .env.example .env
-composer install
-npm install
-php artisan key:generate
+pnpm install
+pnpm dev          # http://localhost:5173
 ```
 
-Set database vars in `.env` (defaults to sqlite).
-
-## Commands
+## 3) Build & Preview (local)
 
 ```bash
-php artisan migrate
-npm install && npm run build
-php artisan l5-swagger:generate # http://localhost:8000/api/documentation
-php artisan serve               # http://localhost:8000
+pnpm build        # outputs to dist/
+pnpm preview      # serves dist on http://localhost:4173
 ```
 
-## Tests and Coverage
+## 4) Scripts (reference)
+
+```json
+"scripts": {
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "format": "prettier --write .",
+  "format:check": "prettier --check .",
+  "preview": "vite preview"
+}
+```
+
+## 5) Environment file
+
+Create `.env` from the example and adjust URLs.
+
+```
+# .env.example
+DWARF_API_BASE_URL=http://localhost:8000/api
+DWARF_API_BASE_URL=http://localhost:8000
+```
+
+Vite exposes only variables prefixed with `VITE_`.
+
+## 6) Docker Compose
+
+A `docker-compose.yml` is provided to build and run the production image.
+
+
+### Build and run container
 
 ```bash
-php artisan test            # to run tests
-php artisan test --coverage # for html report in ./coverage
+# Uses .env for build
+docker compose up --build -d
 ```
 
-## Production (Docker)
+### Notes
 
-Requirements:
-
-* Docker
-* Docker Compose v2
-* Production `.env` file with correct settings (e.g., `APP_ENV=production`, `APP_DEBUG=false`)
-
-Example flow:
-
-```bash
-# build and start
-docker compose up -d --build
-
-# first‑time bootstrap
-docker compose exec app php artisan migrate --force
-```
-
-Notes:
-
-* Application server is Frankenphp, so in production it is recommended to setup a load balancer.
-* API documentation available after running `php artisan l5-swagger:generate` in `/api/documentation`.
+* Ensure `.env` exists with the proper URLs.
+* For a production environment, the app is built and served using `serve` (`npm install -g serve`).

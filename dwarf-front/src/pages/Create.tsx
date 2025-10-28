@@ -60,7 +60,7 @@ export default function Create() {
             URL created successfully
           </AlertTitle>
           <AlertDescription>
-            Your URL has been created successfully. Yo can create another one or
+            Your URL has been created successfully. You can create another one or
             go to the home page.
           </AlertDescription>
         </Alert>
