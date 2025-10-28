@@ -9,7 +9,7 @@ use App\Services\UrlService;
 
 /**
  * @OA\Info(
- *     title="URL Shortener API",
+ *     title="Dwarf Backend API",
  *     version="1.0.0",
  *     description="API for managing and shortening URLs"
  * )
@@ -171,14 +171,13 @@ class UrlController extends Controller
      *     )
      * )
      */
-    public function redirect(string $code)
-    {
-        $url = $this->urlService->getUrlByCode($code);
-        if ($url) {
-            return redirect()->away($url->url);
-        }
-        abort(404);
-    }
+
+     public function redirect(string $code)
+     {
+         $url = $this->urlService->getUrlByCode($code);
+         if (!$url) abort(404);
+         return redirect()->away($url->url, 302);
+     }
 
     /**
      * @OA\Delete(
