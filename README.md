@@ -103,8 +103,9 @@ This sections captures key design and implementation considerations for the proj
 -   **Service Layer:** Encapsulates logic and separation of concerns.
     
 -   **Infrastructure:** Dockerized services. Deployed on AWS using **EC2** (compute), **RDS** (database), and **ALB** (load balancer).
-    
-    
+
+<img width="2047" height="693" alt="image" src="https://github.com/user-attachments/assets/5cd85f5c-461e-4d04-9f90-cb58b8f95dbb" />
+
 
 ----------
 
